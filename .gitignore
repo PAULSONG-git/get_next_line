@@ -9,3 +9,4 @@ a.out.dSYM
 etc
 test.c
 test.sh
+get_next_line_test
