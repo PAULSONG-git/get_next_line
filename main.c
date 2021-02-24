@@ -13,7 +13,7 @@ int main()
 	i = 1;
 	while (i < 8)
 	{
-		result = get_next_line(fd, &line);
+		result = get_next_line(3, &line);
  		printf("%d  line %d: %s\n", result, i, line);
 		i++;
 		result = 0;
