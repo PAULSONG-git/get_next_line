@@ -6,11 +6,12 @@
 /*   By: psong <psong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:59:54 by psong             #+#    #+#             */
-/*   Updated: 2021/02/23 16:29:14 by psong            ###   ########.fr       */
+/*   Updated: 2021/02/24 19:52:46 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 int		ft_strchr(const char *str, int c)
 {
@@ -23,7 +24,7 @@ int		ft_strchr(const char *str, int c)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 int					split(char **backup, char **line, int idx)
@@ -45,7 +46,7 @@ int					split(char **backup, char **line, int idx)
 int					remain(char **backup, char **line, int end)
 {
 	int				idx;
-
+	
 	if (end == -1)
 		return (-1);
 	if (*backup && (idx = ft_strchr(*backup, '\n')) >= 0)
@@ -73,15 +74,15 @@ int					get_next_line(int fd, char **line)
 	while ((end = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[end] = '\0';
-		if (backup[fd])
-		{
-			if ((idx = ft_strchr(backup[fd], '\n')))
-				return (split(&backup[fd], line, idx));
-		}
 		tmp = backup[fd];
 		backup[fd] = ft_strjoin(backup[fd], buf);
 		if (tmp)
+		{
 			free(tmp);
+			tmp = NULL;
+		}
+		if ((idx = ft_strchr(backup[fd], '\n')) >= 0)
+			return (split(&backup[fd], line, idx));
 	}
 	return (remain(&backup[fd], line, end));
 }

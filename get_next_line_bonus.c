@@ -1,59 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daelee <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: psong <psong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/11 21:01:29 by daelee            #+#    #+#             */
-/*   Updated: 2020/04/19 01:51:22 by daelee           ###   ########.fr       */
+/*   Created: 2021/02/23 15:59:54 by psong             #+#    #+#             */
+/*   Updated: 2021/02/24 19:52:46 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
+#include <stdio.h>
 
-int					is_newline(char *backup)
+int		ft_strchr(const char *str, int c)
 {
-	int				i;
+	int	i;
 
 	i = 0;
-	while (backup[i])
+	while (str[i])
 	{
-		if (backup[i] == '\n')
+		if (str[i] == c)
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-int					split_line(char **backup, char **line, int cut_idx)
+int					split(char **backup, char **line, int idx)
 {
-	char			*temp;
-	int				len;
+	char			*temp1;
+	char			*temp2;
 
-	(*backup)[cut_idx] = '\0';
-	*line = ft_strdup(*backup);
-	len = ft_strlen(*backup + cut_idx + 1);
-	if (len == 0)
-	{
-		free(*backup);
-		*backup = 0;
-		return (1);
-	}
-	temp = ft_strdup(*backup + cut_idx + 1);
+	(*backup)[idx] = '\0';
+	if (!(temp1 = ft_strdup(*backup)))
+		return (-1);
+	if (!(temp2 = ft_strdup(*backup + idx + 1)))
+		return (-1);
+	*line = temp1;
 	free(*backup);
-	*backup = temp;
+	*backup = temp2;
 	return (1);
 }
 
-int					return_all(char **backup, char **line, int read_size)
+int					remain(char **backup, char **line, int end)
 {
-	int				cut_idx;
-
-	if (read_size < 0)
+	int				idx;
+	
+	if (end == -1)
 		return (-1);
-	if (*backup && (cut_idx = is_newline(*backup)) >= 0)
-		return (split_line(backup, line, cut_idx));
+	if (*backup && (idx = ft_strchr(*backup, '\n')) >= 0)
+		return (split(backup, line, idx));
 	else if (*backup)
 	{
 		*line = *backup;
@@ -68,17 +65,24 @@ int					get_next_line(int fd, char **line)
 {
 	static char		*backup[OPEN_MAX];
 	char			buf[BUFFER_SIZE + 1];
-	int				read_size;
-	int				cut_idx;
+	char			*tmp;
+	int				end;
+	int 			idx;
 
-	if ((fd < 0) || (line == 0) || (BUFFER_SIZE <= 0))
+	if ((fd < 0) || (line == NULL) || (BUFFER_SIZE <= 0))
 		return (-1);
-	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
+	while ((end = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
-		buf[read_size] = '\0';
+		buf[end] = '\0';
+		tmp = backup[fd];
 		backup[fd] = ft_strjoin(backup[fd], buf);
-		if ((cut_idx = is_newline(backup[fd])) >= 0)
-			return (split_line(&backup[fd], line, cut_idx));
+		if (tmp)
+		{
+			free(tmp);
+			tmp = NULL;
+		}
+		if ((idx = ft_strchr(backup[fd], '\n')) >= 0)
+			return (split(&backup[fd], line, idx));
 	}
-	return (return_all(&backup[fd], line, read_size));
+	return (remain(&backup[fd], line, end));
 }
