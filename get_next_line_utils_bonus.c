@@ -6,13 +6,13 @@
 /*   By: psong <psong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:02:36 by psong             #+#    #+#             */
-/*   Updated: 2021/02/24 19:57:59 by paul             ###   ########.fr       */
+/*   Updated: 2021/02/25 11:10:42 by psong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char *str)
+size_t				ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -22,10 +22,10 @@ size_t	ft_strlen(const char *str)
 		while (str[i])
 			i++;
 	}
-		return (i);
+	return (i);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
@@ -44,7 +44,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (ft_strlen(src));
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t				ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t dst_len;
 	size_t src_len;
@@ -62,7 +62,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dst_len + src_len);
 }
 
-char	*ft_strdup(const char *s1)
+char				*ft_strdup(const char *s1)
 {
 	char	*dst;
 	int		i;
@@ -83,7 +83,7 @@ char	*ft_strdup(const char *s1)
 	return (dst);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char				*ft_strjoin(char *s1, char *s2)
 {
 	char	*dst;
 	size_t	len;

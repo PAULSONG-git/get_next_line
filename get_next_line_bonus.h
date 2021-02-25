@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: paul <psong@student.42seoul.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 21:06:52 by paul              #+#    #+#             */
-/*   Updated: 2021/02/24 21:06:54 by paul             ###   ########.fr       */
+/*   Created: 2021/02/24 21:05:46 by paul              #+#    #+#             */
+/*   Updated: 2021/02/25 11:12:21 by psong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>

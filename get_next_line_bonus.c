@@ -6,14 +6,13 @@
 /*   By: psong <psong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:59:54 by psong             #+#    #+#             */
-/*   Updated: 2021/02/24 19:52:46 by paul             ###   ########.fr       */
+/*   Updated: 2021/02/25 11:09:54 by psong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "get_next_line_bonus.h"
 
-int		ft_strchr(const char *str, int c)
+int					ft_strchr(const char *str, int c)
 {
 	int	i;
 
@@ -46,7 +45,7 @@ int					split(char **backup, char **line, int idx)
 int					remain(char **backup, char **line, int end)
 {
 	int				idx;
-	
+
 	if (end == -1)
 		return (-1);
 	if (*backup && (idx = ft_strchr(*backup, '\n')) >= 0)
@@ -67,7 +66,7 @@ int					get_next_line(int fd, char **line)
 	char			buf[BUFFER_SIZE + 1];
 	char			*tmp;
 	int				end;
-	int 			idx;
+	int				idx;
 
 	if ((fd < 0) || (line == NULL) || (BUFFER_SIZE <= 0))
 		return (-1);
