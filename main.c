@@ -9,7 +9,7 @@ int main()
 	int	result;
 
 	line = "";
-	fd = open("test2.txt", O_RDONLY);
+	fd = open("test.txt", O_RDONLY);
 	i = 1;
 	while (i < 8)
 	{

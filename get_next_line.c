@@ -6,7 +6,7 @@
 /*   By: psong <psong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:59:54 by psong             #+#    #+#             */
-/*   Updated: 2021/02/25 11:50:09 by psong            ###   ########.fr       */
+/*   Updated: 2021/02/25 13:01:19 by psong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int					split(char **backup, char **line, int idx)
 	if (!(temp1 = ft_strdup(*backup)))
 		return (-1);
 	if (!(temp2 = ft_strdup(*backup + idx + 1)))
-	{	
+	{
 		free(temp1);
 		temp1 = NULL;
 		return (-1);
@@ -72,7 +72,7 @@ int					get_next_line(int fd, char **line)
 	int				end;
 	int				idx;
 
-	if ((fd < 0) || (line == NULL) || (BUFFER_SIZE <= 0))
+	if ((fd < 0) || (fd > OPEN_MAX) || (line == NULL) || (BUFFER_SIZE <= 0))
 		return (-1);
 	while ((end = read(fd, buf, BUFFER_SIZE)) > 0)
 	{

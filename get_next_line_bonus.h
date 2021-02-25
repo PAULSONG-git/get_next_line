@@ -6,7 +6,7 @@
 /*   By: paul <psong@student.42seoul.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 21:05:46 by paul              #+#    #+#             */
-/*   Updated: 2021/02/25 11:12:21 by psong            ###   ########.fr       */
+/*   Updated: 2021/02/25 13:02:06 by psong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5000
+#  define BUFFER_SIZE 1024
 # endif
 
 # ifndef OPEN_MAX
-#  define OPEN_MAX 32
+#  define OPEN_MAX 1024
 # endif
 
 int				get_next_line(int fd, char **line);
-
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dest, const char *src, size_t dstsize);
 size_t			ft_strlcat(char *dest, const char *src, size_t dstsize);
