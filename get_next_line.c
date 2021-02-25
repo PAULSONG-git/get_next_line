@@ -6,7 +6,7 @@
 /*   By: psong <psong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:59:54 by psong             #+#    #+#             */
-/*   Updated: 2021/02/25 11:06:51 by psong            ###   ########.fr       */
+/*   Updated: 2021/02/25 11:50:09 by psong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ int					split(char **backup, char **line, int idx)
 	if (!(temp1 = ft_strdup(*backup)))
 		return (-1);
 	if (!(temp2 = ft_strdup(*backup + idx + 1)))
+	{	
+		free(temp1);
+		temp1 = NULL;
 		return (-1);
+	}
 	*line = temp1;
 	free(*backup);
 	*backup = temp2;
